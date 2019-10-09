@@ -1,6 +1,7 @@
 %% @author Anatolii Kosorukov <java1cprog@yandex.ru>
 %% @copyright 2019 by rustkas
 %% @version 1.0
+%% Working with Geometry things
 -module(kas_geometry).
 -export([test/0, area/1,  perimeter/1,circumference/1]).
 
@@ -39,6 +40,7 @@ test() ->
 %% area function	
 area({square, Side})				-> Side * Side;	
 area({rectangle, Width, Height}) 	-> Width * Height;
+area({triangle, A,B,C})				-> P=(A+B+C)/2,math:sqrt(P*(P-A)*(P-B)*(P-C));
 area({circle, Radius})				-> 3.14159 * Radius * Radius.
 
 
