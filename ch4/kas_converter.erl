@@ -33,6 +33,11 @@ test() ->
 	true = erlang:tuple_to_list(       erlang:time()) == 
 		   kas_converter:tuple_to_list(erlang:time()),			
 	
+	% now/0
+	Now = erlang:now(),
+	true = erlang:tuple_to_list(       Now) == 
+		   kas_converter:tuple_to_list(Now),			
+	
 	% memory/0
 	% compare last list items
 	true = lists:last(erlang:tuple_to_list(       erlang:list_to_tuple(erlang:memory()))) == 
