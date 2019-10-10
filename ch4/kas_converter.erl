@@ -20,8 +20,8 @@ test() ->
 tuple_to_list({}) -> [];	
 tuple_to_list(T) ->
 	% create function with inner function.
-	Element = fun(Y) -> (fun(X) when is_tuple(Y) -> erlang:element(X, Y) end) end,	
-	TupleElement = Element(T),
+	TupleElement = fun(Y,X) when is_tuple(Y) -> erlang:element(X, Y) end,	
+	
 	
 	% get tuple size
 	N = erlang:size(T),
@@ -30,7 +30,7 @@ tuple_to_list(T) ->
 	% put each item of this sequence to the function variable
 	% list comprihansion produce a list
 	
-	List = [TupleElement(X)||X <- lists:seq(1, N)],
+	List = [TupleElement(T, X)||X <- lists:seq(1, N)],
 	List.
 	
 %% commands
