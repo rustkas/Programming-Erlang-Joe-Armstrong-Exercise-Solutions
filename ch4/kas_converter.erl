@@ -15,13 +15,35 @@ test() ->
 	
 	true = lists:seq(1, 100) =:= kas_converter:tuple_to_list(erlang:list_to_tuple(lists:seq(1, 100))),
 	
+	% registered/0
+	true = erlang:list_to_tuple(erlang:registered()) ==  erlang:list_to_tuple(erlang:registered()),
+	true = erlang:tuple_to_list(erlang:localtime()) == kas_converter:tuple_to_list(erlang:localtime()),
+	
+	% localtime_to_universaltime/2
+	true = erlang:tuple_to_list(       erlang:localtime_to_universaltime(erlang:localtime(), true)) == 
+		   kas_converter:tuple_to_list(erlang:localtime_to_universaltime(erlang:localtime(), true)),
+			
+	true = erlang:tuple_to_list(       erlang:localtime_to_universaltime(erlang:localtime(), false)) == 
+		   kas_converter:tuple_to_list(erlang:localtime_to_universaltime(erlang:localtime(), false)),
+			
+	true = erlang:tuple_to_list(       erlang:localtime_to_universaltime(erlang:localtime(), undefined)) == 
+		   kas_converter:tuple_to_list(erlang:localtime_to_universaltime(erlang:localtime(), undefined)),			
+	
+	% time/0
+	true = erlang:tuple_to_list(       erlang:time()) == 
+		   kas_converter:tuple_to_list(erlang:time()),			
+	
+	% memory/0
+	% compare last list items
+	true = lists:last(erlang:tuple_to_list(       erlang:list_to_tuple(erlang:memory()))) == 
+	       lists:last(kas_converter:tuple_to_list(erlang:list_to_tuple(erlang:memory()))),
+	
 	test_ok.
 	
 tuple_to_list({}) -> [];	
 tuple_to_list(T) ->
 	% create function with inner function.
 	TupleElement = fun(Y,X) when is_tuple(Y) -> erlang:element(X, Y) end,	
-	
 	
 	% get tuple size
 	N = erlang:size(T),
