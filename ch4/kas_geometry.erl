@@ -39,22 +39,22 @@ test() ->
 	
 %% area function	
 area({square, Side})				-> Side * Side;	
-area({rectangle, Width, Height}) 	-> Width * Height;
+area({rectangle, Width, Height}) 		-> Width * Height;
 area({triangle, A,B,C})				-> P=(A+B+C)/2,math:sqrt(P*(P-A)*(P-B)*(P-C));
 area({circle, Radius})				-> 3.14159 * Radius * Radius.
 
 
 %% perimeter function
 perimeter({square, Side}) 				-> 4 * Side;
-perimeter({square_d, Diagonal}) 		-> 2* math:sqrt(2) * Diagonal;
-perimeter({rectangle, Width, Height}) 	-> 2 * (Width + Height);
+perimeter({square_d, Diagonal}) 			-> 2* math:sqrt(2) * Diagonal;
+perimeter({rectangle, Width, Height}) 			-> 2 * (Width + Height);
 perimeter({rhombus, Side}) 				-> 4 * Side;
-perimeter({trapeze,Side_A,Side_B,Side_C,Side_D}) -> Side_A + Side_B + Side_C + Side_D;
-perimeter({circle, Radius}) 			-> 2 * math:pi() * Radius.
+perimeter({trapeze,Side_A,Side_B,Side_C,Side_D}) 	-> Side_A + Side_B + Side_C + Side_D;
+perimeter({circle, Radius}) 				-> 2 * math:pi() * Radius.
 
 %% circumference
-circumference({radius, Radius}) -> 2 * math:pi() * Radius;
-circumference({diameter, Diameter}) -> math:pi() * Diameter.
+circumference({radius, Radius}) 	-> 2 * math:pi() * Radius;
+circumference({diameter, Diameter}) 	-> math:pi() * Diameter.
 
 %% commands
 %
