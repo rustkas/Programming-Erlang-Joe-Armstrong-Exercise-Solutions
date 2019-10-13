@@ -12,24 +12,28 @@
 -export([filter/2]).
 
 test() ->
-	
+
+	% Exercise 5	
 	true = even(2),
 	%io:fwrite("~p~n", [even(3)] ),
 	
 	true = not odd(2),
 	false = not odd(3),
 
+	% Exercise 6
 	[] = filter(fun even/1, []),
 	[] = filter(fun odd/1, []),
 	[2,4] = filter(fun even/1, [2,4]),
 	[1,3] = filter(fun odd/1, [1,3]),
 	[2,4] = filter(fun even/1, [1,2,4,5]),
 	[1,3] = filter(fun odd/1, [2,1,3,6]),
-	
+
+	% Exercise 7	
 	{[],[]} = split([]),
 	{[1,3],[2,4]} = split([1,2,3,4]),
 	
 	test_worked.
+
 
 % Return true if X is even	
 even(X) when is_integer(X) ->
@@ -43,7 +47,7 @@ odd(X) ->
 filter(F,L) when is_function(F,1), is_list(L)	->
 	[X || X<-L, F(X) == true].
 
-
+% Split function
 split(L) when is_list(L)->	
 	split_acc(L,[],[]).
 
