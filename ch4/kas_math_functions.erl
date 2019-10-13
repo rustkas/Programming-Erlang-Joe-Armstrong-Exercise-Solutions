@@ -7,9 +7,9 @@
 -module(kas_math_functions).
 -export([test/0]).
 -export([even/1, odd/1]).
--export([split/1]).
-% excercise 
 -export([filter/2]).
+-export([split/1]).
+
 
 test() ->
 
