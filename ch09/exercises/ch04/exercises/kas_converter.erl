@@ -52,7 +52,7 @@ test() ->
 
 
 -spec tuple_to_list({}) -> []
-				;  (Tuple :: tuple()) -> [term()].
+		;  (Tuple :: tuple()) -> [term()].
 	
 tuple_to_list({}) -> [];	
 tuple_to_list(T) ->
