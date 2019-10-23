@@ -123,8 +123,7 @@ weekday(Date) when is_tuple(Date) andalso tuple_size(Date) == 3 ->
 %% Lang is the lang of the text representation
 %1..1114111,...
 %unicode:chardata()
--type language() :: 'am' | 'ch' | 'de' | 'dk' | 'en' |
-			'kr' | 'ru' | 'th'.
+-type language() :: 'am' | 'ch' | 'de' | 'dk' | 'en' | 'kr' | 'ru' | 'th'.
 -type day_of_the_week() :: 0 | 1 | 2 | 3 | 4 | 5 | 6.
 
 -spec weekday_text(DayOfTheWeek,Language) -> WeekDayName when 
