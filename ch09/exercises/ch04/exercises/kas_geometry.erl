@@ -44,15 +44,20 @@ test() ->
 	test_ok.
 	
 %% area function	
--spec area({'circle',Radius} | {'square',Side} | {'rectangle',Width,Height} | {'triangle',A,B,C}) -> Area when 
-	Radius :: float(),
-	Side :: float(),
-	Width :: float(),
-	Height :: float(),
-	A :: float(),
-	B :: float(),
-	C :: float(),
-	Area :: float().
+-spec area({'square',Side}) -> Area :: float() when 
+		Side :: float();
+	({'rectangle',Width,Height}) -> Area when 
+		Width :: float(),
+		Height :: float(),
+		Area :: float();
+	({'triangle',A,B,C}) -> Area when
+		A :: float(),
+		B :: float(),
+		C :: float(),
+		Area :: float();
+	({'circle',Radius}) -> Area when
+		Radius :: float(),
+		Area :: float().
 
 area({square, Side}) when Side > 0	-> Side * Side;	
 area({rectangle, Width, Height}) when Width > 0, Height > 0 -> Width * Height;
@@ -74,21 +79,32 @@ area({circle, Radius})				-> 3.14159 * Radius * Radius.
 	Side_D :: float(),
 	Perimeter :: float().
 
-perimeter({square, Side}) when Side > 0 -> 4 * Side;
-perimeter({square_d, Diagonal}) when Diagonal > 0 -> 2* math:sqrt(2) * Diagonal;
-perimeter({rectangle, Width, Height}) when Width > 0, Height > 0 -> 2 * (Width + Height);
-perimeter({rhombus, Side}) when Side > 0 -> 4 * Side;
-perimeter({trapeze,Side_A,Side_B,Side_C,Side_D})  when Side_A > 0,Side_B > 0,Side_C > 0,Side_D > 0	-> Side_A + Side_B + Side_C + Side_D;
+perimeter({square, Side}) when is_float(Side) andalso Side > 0 -> 4 * Side;
+perimeter({square_d, Diagonal}) when is_float(Diagonal) andalso Diagonal > 0 -> 2* math:sqrt(2) * Diagonal;
+perimeter({rectangle, Width, Height}) when is_float(Width) andalso is_float(Height) andalso Width > 0, Height > 0 -> 2 * (Width + Height);
+perimeter({rhombus, Side}) when is_float(Side) andalso Side > 0 -> 4 * Side;
+perimeter({trapeze,Side_A,Side_B,Side_C,Side_D}) when 
+	is_float(Side_A) andalso 
+	is_float(Side_D) andalso 
+	is_float(Side_C) andalso 
+	is_float(Side_D) andalso  
+	Side_A > 0,
+	Side_B > 0,
+	Side_C > 0,
+	Side_D > 0	-> 
+		Side_A + Side_B + Side_C + Side_D;
 perimeter({circle, Radius}) when Radius > 0 -> 2 * math:pi() * Radius.
 
 %% circumference
--spec circumference({'diameter',Diameter} | {'radius', Radius}) -> Circumference when
-	Diameter :: float(),
-	Radius :: float(),
-	Circumference :: float().
+-spec circumference({'diameter',Diameter}) -> Circumference when
+		Diameter :: float(),
+		Circumference :: float();
+	({'radius', Radius}) -> Circumference when
+		Radius :: float(),
+		Circumference :: float().
 
-circumference({diameter, Diameter}) when Diameter >0 	-> math:pi() * Diameter;
-circumference({radius, Radius}) when Radius >0	-> 2 * math:pi() * Radius.
+circumference({diameter, Diameter}) when is_float(Diameter) andalso Diameter > 0.0 	-> math:pi() * Diameter;
+circumference({radius, Radius}) when is_float(Radius) andalso Radius > 0.0	-> 2 * math:pi() * Radius.
 
 %% commands
 %
